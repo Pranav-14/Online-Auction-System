@@ -1,0 +1,60 @@
+body {
+    padding: 10px;
+}
+
+.listing {
+    display: grid;
+    grid-template-columns: 400px auto;
+    padding: 20px;
+    margin: 10px 0;
+    border: rgb(0, 0, 0) 2px solid;
+    border-radius: 8px;
+}
+
+.thumb-image {
+    float: left;
+}
+
+.listing:hover {
+    border-color: rgb(49, 223, 226);
+    box-shadow: rgb(0, 0, 0);
+}
+
+.listing-detail {
+    float: left;
+    color: black;
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: 150px 400px;
+}
+
+.form-container > label, .form-container > div {
+    float: left;
+    width: 150px;
+    margin: 10px;
+}
+
+.form-container > input, .form-container > textarea {
+    float: left;
+    margin: 10px;
+}
+
+.comment {
+    margin: 10px 0;
+    padding: 15px;
+}
+
+.comment-text {
+    margin-bottom: 15px;
+}
+
+.listing-view-detail, .no-bids, .input-group {
+    margin: 20px 0;
+}
+
+.input-group {
+    width: 200px;
+}
+
