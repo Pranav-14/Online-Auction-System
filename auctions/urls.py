@@ -7,6 +7,8 @@ urlpatterns = [
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),
     path("register", views.register, name="register"),
+    path("otp-login", views.request_otp_view, name="request_otp"),
+    path("verify-otp", views.verify_otp_view, name="verify_otp"),
     path("create", views.create, name="create"),
     path("listing/<int:listing_id>", views.listing, name="listing"),
     path("listing/<int:listing_id>/comment", views.comment, name='comment'),
@@ -15,5 +17,4 @@ urlpatterns = [
     path("categories/<str:name>", views.category, name='category'),
     path("categories", views.categories, name='categories'),
     path("close_auction/<int:idd>", views.close_auction, name='close_auction'),
-
 ]
