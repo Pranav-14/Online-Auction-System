@@ -62,9 +62,12 @@ def request_otp_view(request):
         request.session["otp_phone_number"] = formatted_phone
 
         # Log OTP code to server output for local testing & development
-        print(f"\n==========================================")
-        print(f"[OTP SERVICE] Sent OTP: {otp_obj.otp_code} to {formatted_phone}")
-        print(f"==========================================\n")
+        print(f"\n==========================================", flush=True)
+        print(
+            f"[OTP SERVICE] Sent OTP: {otp_obj.otp_code} to {formatted_phone}",
+            flush=True,
+        )
+        print(f"==========================================\n", flush=True)
 
         return HttpResponseRedirect(reverse("verify_otp"))
 
