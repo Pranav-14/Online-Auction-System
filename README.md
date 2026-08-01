@@ -2,7 +2,7 @@
 
 > **The Indian C2C Hyperlocal Platform for Auctions, Classifieds & Free Giveaways**
 
-LocalLoop is a modern, full-scale C2C marketplace platform tailored specifically for the Indian market. It seamlessly combines timed auctions, fixed-price/negotiable classifieds, and free item giveaways ("Daan") into a single hyperlocal experience powered by 6-digit PIN code distance radius filtering and mobile (+91) OTP authentication.
+LocalLoop is a modern, full-scale C2C marketplace platform tailored specifically for the Indian market. It seamlessly combines timed auctions, fixed-price/negotiable classifieds, and free item giveaways ("Up for Grabs") into a single hyperlocal experience powered by 6-digit PIN code distance radius filtering and mobile (+91) OTP authentication.
 
 ---
 
@@ -10,7 +10,7 @@ LocalLoop is a modern, full-scale C2C marketplace platform tailored specifically
 
 - 🔨 **Timed Auctions**: Real-time bidding engine with reserve prices, minimum bid increments in Indian Rupees (`₹`), and anti-sniping clock auto-extensions (+3 minutes).
 - 🏷️ **Classifieds & Direct Offers**: Direct buyer-seller offer negotiation workflow for fixed-price items.
-- 🎁 **Free Giveaways ("Daan")**: Community-driven item donation and claim reservation system with seller recipient selection.
+- 🎁 **Free Giveaways ("Up for Grabs")**: Community-driven item donation and claim reservation system with seller recipient selection.
 - 📍 **6-Digit PIN Code Radius Search**: Discover local listings within 5 km, 15 km, 30 km, or 50 km radius of your Indian PIN code or city.
 - 📱 **Mobile (+91) OTP Authentication**: Fast, secure mobile login designed for high trust and fraud prevention across Indian telecom networks.
 - 💬 **In-App Listing Chat**: Real-time buyer-seller messaging with anti-scam QR code safety alerts.
