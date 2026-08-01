@@ -10,7 +10,7 @@ class User(AbstractUser):
         unique=True,
         null=True,
         blank=True,
-        help_text="Indian Mobile Number starting with +91 or 10-digit number"
+        help_text="Indian Mobile Number starting with +91 or 10-digit number",
     )
     is_phone_verified = models.BooleanField(default=False)
 
@@ -18,10 +18,10 @@ class User(AbstractUser):
         """Helper to standardize Indian mobile numbers into +91 format"""
         if not self.phone_number:
             return None
-        digits = ''.join(filter(str.isdigit, str(self.phone_number)))
+        digits = "".join(filter(str.isdigit, str(self.phone_number)))
         if len(digits) == 10:
             return f"+91{digits}"
-        elif len(digits) == 12 and digits.startswith('91'):
+        elif len(digits) == 12 and digits.startswith("91"):
             return f"+{digits}"
         return self.phone_number
 
@@ -33,12 +33,14 @@ class OTPVerification(models.Model):
     is_used = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
 
     @classmethod
     def generate_otp(cls, phone_number):
         """Invalidate older unused OTPs and create a fresh 6-digit OTP code"""
-        cls.objects.filter(phone_number=phone_number, is_used=False).update(is_used=True)
+        cls.objects.filter(phone_number=phone_number, is_used=False).update(
+            is_used=True
+        )
         code = f"{random.randint(100000, 999999)}"
         return cls.objects.create(phone_number=phone_number, otp_code=code)
 
@@ -67,9 +69,11 @@ class Listing(models.Model):
     description = models.TextField(max_length=256)
     current_bid = models.FloatField()
     image_url = models.URLField()
-    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, related_name='all_listings')
+    category = models.ForeignKey(
+        Category, on_delete=models.DO_NOTHING, related_name="all_listings"
+    )
     created = models.DateTimeField(auto_now_add=True)
-    watchlist_users = models.ManyToManyField(User, related_name='watchlist', blank=True)
+    watchlist_users = models.ManyToManyField(User, related_name="watchlist", blank=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -77,7 +81,9 @@ class Listing(models.Model):
 
 
 class Bid(models.Model):
-    bidder = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids_placed")
+    bidder = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="bids_placed"
+    )
     amount = models.FloatField()
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name="bids")
 
@@ -86,10 +92,14 @@ class Bid(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comment_user")
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="comment_user"
+    )
     comment = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    listing = models.ForeignKey(Listing, on_delete=models.DO_NOTHING, related_name="comments")
+    listing = models.ForeignKey(
+        Listing, on_delete=models.DO_NOTHING, related_name="comments"
+    )
 
     def __str__(self):
         return f"{self.user}: {self.listing.title}"

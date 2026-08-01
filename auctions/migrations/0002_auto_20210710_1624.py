@@ -6,18 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auctions', '0001_initial'),
+        ("auctions", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='comment',
-            name='created',
-            field=models.CharField(default='Jul 10, 2021, 04:24 PM', editable=False, max_length=32),
+            model_name="comment",
+            name="created",
+            field=models.CharField(
+                default="Jul 10, 2021, 04:24 PM", editable=False, max_length=32
+            ),
         ),
         migrations.AddField(
-            model_name='listing',
-            name='created',
-            field=models.CharField(default='Jul 10, 2021, 04:24 PM', editable=False, max_length=32),
+            model_name="listing",
+            name="created",
+            field=models.CharField(
+                default="Jul 10, 2021, 04:24 PM", editable=False, max_length=32
+            ),
         ),
     ]

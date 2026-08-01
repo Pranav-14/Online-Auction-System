@@ -7,17 +7,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auctions', '0010_listing_watchlist_users'),
+        ("auctions", "0010_listing_watchlist_users"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='listing',
-            name='watchlist_users',
+            model_name="listing",
+            name="watchlist_users",
         ),
         migrations.AddField(
-            model_name='listing',
-            name='watchlist_users',
-            field=models.ManyToManyField(blank=True, null=True, related_name='watchlist', to=settings.AUTH_USER_MODEL),
+            model_name="listing",
+            name="watchlist_users",
+            field=models.ManyToManyField(
+                blank=True,
+                null=True,
+                related_name="watchlist",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

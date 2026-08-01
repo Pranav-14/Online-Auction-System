@@ -7,13 +7,17 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auctions', '0013_category'),
+        ("auctions", "0013_category"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='listing',
-            name='category',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='all_listings', to='auctions.category'),
+            model_name="listing",
+            name="category",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                related_name="all_listings",
+                to="auctions.category",
+            ),
         ),
     ]

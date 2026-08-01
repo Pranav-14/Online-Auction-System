@@ -26,15 +26,19 @@ class IndianAuthTestCase(TestCase):
 
     def test_request_otp_view(self):
         """Test requesting OTP code for a valid 10-digit mobile number"""
-        response = self.client.post(reverse("request_otp"), {"phone_number": "9876543210"})
+        response = self.client.post(
+            reverse("request_otp"), {"phone_number": "9876543210"}
+        )
         self.assertEqual(response.status_code, 302)
         self.assertEqual(self.client.session.get("otp_phone_number"), "+919876543210")
-        self.assertEqual(OTPVerification.objects.filter(phone_number="+919876543210").count(), 1)
+        self.assertEqual(
+            OTPVerification.objects.filter(phone_number="+919876543210").count(), 1
+        )
 
     def test_verify_otp_view_success(self):
         """Test verifying valid OTP code logs the user in and verifies phone number"""
         otp = OTPVerification.generate_otp(self.test_phone)
-        
+
         # Set session phone
         session = self.client.session
         session["otp_phone_number"] = self.test_phone

@@ -7,36 +7,52 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auctions', '0016_alter_bid_id_alter_category_id_alter_comment_id_and_more'),
+        ("auctions", "0016_alter_bid_id_alter_category_id_alter_comment_id_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='OTPVerification',
+            name="OTPVerification",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('phone_number', models.CharField(max_length=15)),
-                ('otp_code', models.CharField(max_length=6)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('is_used', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("phone_number", models.CharField(max_length=15)),
+                ("otp_code", models.CharField(max_length=6)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("is_used", models.BooleanField(default=False)),
             ],
             options={
-                'ordering': ['-created_at'],
+                "ordering": ["-created_at"],
             },
         ),
         migrations.AddField(
-            model_name='user',
-            name='is_phone_verified',
+            model_name="user",
+            name="is_phone_verified",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='user',
-            name='phone_number',
-            field=models.CharField(blank=True, help_text='Indian Mobile Number starting with +91 or 10-digit number', max_length=15, null=True, unique=True),
+            model_name="user",
+            name="phone_number",
+            field=models.CharField(
+                blank=True,
+                help_text="Indian Mobile Number starting with +91 or 10-digit number",
+                max_length=15,
+                null=True,
+                unique=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='listing',
-            name='watchlist_users',
-            field=models.ManyToManyField(blank=True, related_name='watchlist', to=settings.AUTH_USER_MODEL),
+            model_name="listing",
+            name="watchlist_users",
+            field=models.ManyToManyField(
+                blank=True, related_name="watchlist", to=settings.AUTH_USER_MODEL
+            ),
         ),
     ]
