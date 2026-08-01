@@ -8,13 +8,19 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auctions', '0009_remove_listing_watchlist_users'),
+        ("auctions", "0009_remove_listing_watchlist_users"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='listing',
-            name='watchlist_users',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, related_name='watchlist', to=settings.AUTH_USER_MODEL),
+            model_name="listing",
+            name="watchlist_users",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                related_name="watchlist",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

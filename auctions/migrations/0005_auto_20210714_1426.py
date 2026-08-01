@@ -8,19 +8,28 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auctions', '0004_listing_user'),
+        ("auctions", "0004_listing_user"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='comment',
-            name='listing',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.DO_NOTHING, related_name='comments', to='auctions.listing'),
+            model_name="comment",
+            name="listing",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                related_name="comments",
+                to="auctions.listing",
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='comment',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comment_user', to=settings.AUTH_USER_MODEL),
+            model_name="comment",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="comment_user",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]
