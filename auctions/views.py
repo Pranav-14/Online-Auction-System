@@ -61,6 +61,7 @@ def request_otp_view(request):
         otp_obj = OTPVerification.generate_otp(formatted_phone)
         request.session["otp_phone_number"] = formatted_phone
 
+<<<<<<< HEAD
         # Log OTP code to server console and dedicated otp.log file
         log_msg = f"[OTP SERVICE] Sent OTP: {otp_obj.otp_code} to {formatted_phone}"
         print(f"\n==========================================", flush=True)
@@ -74,6 +75,15 @@ def request_otp_view(request):
                 f.write(f"[{timezone.now().strftime('%Y-%m-%d %H:%M:%S')}] {log_msg}\n")
         except Exception:
             pass
+=======
+        # Log OTP code to server output for local testing & development
+        print(f"\n==========================================", flush=True)
+        print(
+            f"[OTP SERVICE] Sent OTP: {otp_obj.otp_code} to {formatted_phone}",
+            flush=True,
+        )
+        print(f"==========================================\n", flush=True)
+>>>>>>> bc8ab0d7eba22962babf148ee72a7acab1e856ce
 
         return HttpResponseRedirect(reverse("verify_otp"))
 
