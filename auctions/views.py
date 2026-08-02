@@ -61,10 +61,19 @@ def request_otp_view(request):
         otp_obj = OTPVerification.generate_otp(formatted_phone)
         request.session["otp_phone_number"] = formatted_phone
 
-        # Log OTP code to server output for local testing & development
-        print(f"\n==========================================")
-        print(f"[OTP SERVICE] Sent OTP: {otp_obj.otp_code} to {formatted_phone}")
-        print(f"==========================================\n")
+        # Log OTP code to server console and dedicated otp.log file
+        log_msg = f"[OTP SERVICE] Sent OTP: {otp_obj.otp_code} to {formatted_phone}"
+        print(f"\n==========================================", flush=True)
+        print(log_msg, flush=True)
+        print(f"==========================================\n", flush=True)
+
+        try:
+            from django.conf import settings
+            log_file = getattr(settings, 'BASE_DIR') / "otp.log"
+            with open(log_file, "a") as f:
+                f.write(f"[{timezone.now().strftime('%Y-%m-%d %H:%M:%S')}] {log_msg}\n")
+        except Exception:
+            pass
 
         return HttpResponseRedirect(reverse("verify_otp"))
 

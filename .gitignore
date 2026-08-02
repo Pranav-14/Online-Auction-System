@@ -21,4 +21,8 @@ __pycache__/
 # Private / Local progress tracking & scratch files
 ROADMAP.md
 
+# Log files
+*.log
+
+
 
