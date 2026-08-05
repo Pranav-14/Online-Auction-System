@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from auctions.models import User, OTPVerification
+from auctions.templatetags.indian_numbers import format_inr
 
 
 class IndianAuthTestCase(TestCase):
@@ -51,3 +52,24 @@ class IndianAuthTestCase(TestCase):
         user = User.objects.get(phone_number=self.test_phone)
         self.assertTrue(user.is_phone_verified)
         self.assertEqual(int(self.client.session["_auth_user_id"]), user.pk)
+
+
+class IndianCurrencyTestCase(TestCase):
+    def test_format_inr_integers(self):
+        """Test Indian Rupee formatting for various integer amounts"""
+        self.assertEqual(format_inr(0), "₹ 0")
+        self.assertEqual(format_inr(500), "₹ 500")
+        self.assertEqual(format_inr(1500), "₹ 1,500")
+        self.assertEqual(format_inr(150000), "₹ 1,50,000")
+        self.assertEqual(format_inr(10000000), "₹ 1,00,00,000")
+
+    def test_format_inr_floats(self):
+        """Test Indian Rupee formatting for float amounts"""
+        self.assertEqual(format_inr(150000.5), "₹ 1,50,000.5")
+        self.assertEqual(format_inr(150000.0), "₹ 1,50,000")
+
+    def test_format_inr_strings_and_edge_cases(self):
+        """Test Indian Rupee formatting for strings, None, and empty inputs"""
+        self.assertEqual(format_inr("150000"), "₹ 1,50,000")
+        self.assertEqual(format_inr(None), "₹ 0")
+        self.assertEqual(format_inr(""), "₹ 0")

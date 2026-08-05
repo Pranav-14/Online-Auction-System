@@ -1,60 +1,272 @@
+/* ==========================================================================
+   MASTER DESIGN SYSTEM & INR TOKEN STYLESHEET
+   Indian Kleinanzeigen & Auction Platform
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
+
+/* --- CSS CUSTOM PROPERTIES / DESIGN TOKENS --- */
+:root {
+  /* Brand & Theme Colors */
+  --bg-dark: #090d16;
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-card: rgba(30, 41, 59, 0.75);
+  --bg-card-hover: rgba(51, 65, 85, 0.85);
+
+  /* Accents */
+  --accent-emerald: #10b981;
+  --accent-emerald-glow: rgba(16, 185, 129, 0.3);
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --accent-cyan: #06b6d4;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+
+  /* Text Hierarchy */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+  --text-inverse: #0f172a;
+
+  /* INR Rupee Display Tokens */
+  --inr-green: #34d399;
+  --inr-font: 'Outfit', sans-serif;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(30, 41, 59, 0.65);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-border-hover: 1px solid rgba(16, 185, 129, 0.4);
+  --glass-blur: blur(16px);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px var(--accent-emerald-glow);
+
+  /* Layout & Spacing */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- BASE & TYPOGRAPHY --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    padding: 10px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
-.listing {
-    display: grid;
-    grid-template-columns: 400px auto;
-    padding: 20px;
-    margin: 10px 0;
-    border: rgb(0, 0, 0) 2px solid;
-    border-radius: 8px;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
 }
 
-.thumb-image {
-    float: left;
+/* --- INR RUPEE FORMATTING TOKENS --- */
+.price-tag {
+  font-family: var(--inr-font);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--inr-green);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
-.listing:hover {
-    border-color: rgb(49, 223, 226);
-    box-shadow: rgb(0, 0, 0);
+.price-tag-lg {
+  font-size: 2rem;
+  color: var(--accent-emerald);
+  text-shadow: 0 0 12px var(--accent-emerald-glow);
 }
 
-.listing-detail {
-    float: left;
-    color: black;
+.price-free {
+  font-family: var(--inr-font);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.form-container {
-    display: grid;
-    grid-template-columns: 150px 400px;
+/* --- FORMAT BADGES --- */
+.badge-format {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.form-container > label, .form-container > div {
-    float: left;
-    width: 150px;
-    margin: 10px;
+.badge-auction {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(168, 85, 247, 0.4));
+  color: #c084fc;
+  border: 1px solid rgba(192, 132, 252, 0.4);
 }
 
-.form-container > input, .form-container > textarea {
-    float: left;
-    margin: 10px;
+.badge-fixed {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(52, 211, 153, 0.4));
+  color: #6ee7b7;
+  border: 1px solid rgba(110, 231, 183, 0.4);
 }
 
-.comment {
-    margin: 10px 0;
-    padding: 15px;
+.badge-giveaway {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(34, 211, 238, 0.4));
+  color: #67e8f9;
+  border: 1px solid rgba(103, 232, 249, 0.4);
 }
 
-.comment-text {
-    margin-bottom: 15px;
+.badge-location {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
 }
 
-.listing-view-detail, .no-bids, .input-group {
-    margin: 20px 0;
+/* --- RESPONSIVE CARD GRID --- */
+.listing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
 }
 
-.input-group {
-    width: 200px;
+/* --- GLASSMORPHIC LISTING CARD --- */
+.listing-card {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
 }
 
+.listing-card:hover {
+  transform: translateY(-4px);
+  border: var(--glass-border-hover);
+  box-shadow: var(--shadow-glow), var(--shadow-lg);
+  background: var(--bg-card-hover);
+}
+
+.listing-card-img-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 65%; /* 16:9 ratio */
+  overflow: hidden;
+  background-color: var(--bg-primary);
+}
+
+.listing-card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.listing-card:hover .listing-card-img {
+  transform: scale(1.06);
+}
+
+.listing-card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.75rem;
+}
+
+.listing-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-decoration: none;
+  line-clamp: 2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.listing-card-title:hover {
+  color: var(--accent-emerald);
+}
+
+/* --- BUTTON & INPUT UTILITIES --- */
+.btn-glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  color: var(--text-main);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.btn-glass:hover {
+  border-color: var(--accent-emerald);
+  color: var(--accent-emerald);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-emerald {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.btn-emerald:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+}
+
+/* --- BREAKPOINTS & RESPONSIVE LAYOUT --- */
+@media (max-width: 768px) {
+  .listing-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .price-tag {
+    font-size: 1.15rem;
+  }
+}
